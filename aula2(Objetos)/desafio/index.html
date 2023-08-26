@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveBay</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3097/3097144.png">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+</head>
+
+<body>
+    <aside>
+        <div id="asideContent">
+            <ul class="menu">
+                <a href="#" id="home">
+                    <li><i class="fa-solid fa-user"></i>Home</li>
+                </a>
+                <a href="#" id="login">
+                    <li><i class="fa-solid fa-user"></i>Login</li>
+                </a>
+                <a href="#" id="register">
+                    <li><i class="fa-solid fa-id-card"></i>Cadastrar-se</li>
+                </a>
+                <a href="#" id="myAccount">
+                    <li><i class="fa-solid fa-gears"></i>Minha Conta</li>
+                </a>
+                <a href="#" id="myCars">
+                    <li><i class="fa-solid fa-car-side"></i>Meus Carros</li>
+                </a>
+                <a href="#" id="buyCars">
+                    <li><i class="fa-solid fa-cart-shopping"></i>Comprar Veicúlo</li>
+                </a>
+                <a href="#" id="sellCars">
+                    <li><i class="fa-solid fa-dollar-sign"></i>Vender Veicúlo</li>
+                </a>
+                <a href="#" id="logout">
+                    <li><i class="fa-solid fa-right-from-bracket"></i>Logout</li>
+                </a>
+            </ul>
+        </div>
+    </aside>
+    <main>
+        <div id="mainContent">
+            <section id="home">
+                <div id="mainPage">
+                    <img src="https://www.pngfind.com/pngs/b/205-2059273_uno-png.png" height="300px" alt="logo">
+                    <h1>DRIVE BAY</h1>
+                </div>
+            </section>
+            <section id="login">
+                <div id="formLogContent">
+                    <form action="" method="POST" id="formLogin">
+                        <div>
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" id="email" placeholder="">
+                        </div>
+                        <div>
+                            <label for="password">Senha:</label>
+                            <input type="password" name="password" id="password" placeholder="">
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                </div>
+            </section>
+            <section id="register">
+                <div id="formCadContent">
+                    <form action="" method="POST" id="formCad">
+                        <div>
+                            <label for="fullName">Nome completo:</label>
+                            <input type="text" name="fullName" id="fullName">
+                        </div>
+                        <div>
+                            <label for="emailCad">Email:</label>
+                            <input type="text" name="emailCad" id="emailCad">
+                        </div>
+                        <div>
+                            <label for="passwordCad">Senha:</label>
+                            <input type="password" name="passwordCad" id="passwordCad">
+                        </div>
+                        <div>
+                            <label for="money">Depositar valor inicial:</label>
+                            <input type="number" name="money" id="money">
+                        </div>
+                        <div>
+                            <label for="habilitado">Habilitado:</label>
+                            <select name="habilitado" id="habilitado">
+                                <option value="true">Sou habilitado</option>
+                                <option value="false">Não sou habilitado</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="date">Data de nascimento:</label>
+                            <input type="date" name="date" id="date">
+                        </div>
+                        <button type="submit">Cadastrar-se</button>
+                    </form>
+                </div>
+            </section>
+            <section id="myAccount">
+                <div id="myAccountContent">
+                    criar um hub mostrando as informações da conta, money nome email etc
+                </div>
+            </section>
+            <section id="myCars">
+                <div id="myCarsContent">
+                    exibir carros, no caso serao objetos com nome valor modelo e imagem de carros
+                </div>
+            </section>
+            <section id="buyCars">
+                <div id="buyCarsContent">
+                    aqui seram transferidos carros de concessionarias para pessoas
+                </div>
+            </section>
+            <section id="sellCars">
+                <div id="sellCarsContent">
+                    aqui voce vende o carro pro site o valor ira voltar para sua conta
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="./assets/javaScript/menuDom.js"></script>
+</body>
+
+</html>

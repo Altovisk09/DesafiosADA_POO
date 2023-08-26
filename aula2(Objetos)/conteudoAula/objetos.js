@@ -33,7 +33,7 @@ class Conta {
     get cpf() {
         return this.#cpf;
     }
-
+    
     validarSenha(senha) {
         if(this.#senha === senha) {
             console.log("voce acessou a conta");
