@@ -99,3 +99,9 @@ form button[type="submit"]:hover {
     background-color: #0056b3;
 }
 
+section {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente o conteúdo */
+    align-items: center; /* Centraliza verticalmente o conteúdo */
+    height: 100%;
+}
