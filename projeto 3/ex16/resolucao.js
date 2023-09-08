@@ -10,7 +10,7 @@ class Escola {
     media() {
         const todasAsNotas = this.alunos.reduce((acc, aluno) => acc + aluno.nota, 0);
         const media = todasAsNotas / this.alunos.length;
-        console.log(media)
+        console.log(`Média das notas da turma: ${media}\n`)
     }
 
     ranking() {
@@ -29,5 +29,5 @@ escola.adicionar("Alice", 7);
 escola.adicionar("João", 10);
 escola.adicionar("Maria", 5);
 escola.adicionar("Maurício", 7);
-escola.media(); // 7.5
+escola.media(); // 7.25
 escola.ranking();
