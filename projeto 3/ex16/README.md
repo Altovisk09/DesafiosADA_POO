@@ -14,7 +14,7 @@ escola.adicionar("João", 10);
 escola.adicionar("Maria", 5);
 escola.adicionar("Maurício", 7);
 escola.adicionar("Alice", 7);
-escola.media(); // 7.5
+escola.media(); // 7.25
 escola.ranking();
 // [
 //   { nome: "João", nota: 10 },
