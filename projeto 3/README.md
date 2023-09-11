@@ -21,3 +21,6 @@ Este projeto não tem nenhum requisito de instalação e coniguração, pode ser
 ## entrega
 
 O trabalho final com todos os exercícios resolvidos deverá ser colocado em um repositório no github e enviado aos professores, de preferência até segunda-feira dia 4, mas podendo ser extendido até sexta-feira dia 8.
+
+
+## obs: optei por entregar o projeto 1  
