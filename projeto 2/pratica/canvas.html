@@ -5,49 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>canvas</title>
     <script>
-        let anima
-        let px = 0;
-        let py = 0;
-        let dx = 1; // direção eixo X
-        let dy = 0;
-        let largRet = AltuRet = 75;
-        let LargCan = Altucan = 500;
-        function desenhar(){
-        let canvas = document.getElementById('desenho1');
-        let ctx = canvas.getContext('2d');
-        
-        ctx.clearRect(0,0,500,500);
-        ctx.fillStyle ='#F00';
-        ctx.fillRect(px, py, largRet, AltuRet);
-        ctx.lineWidth = 3
-        ctx.strokeStyle = '#000'
-        ctx.strokeRect(px, py, largRet, AltuRet);
+    // Argumentos ARC
+    // Posição X, Posição Y, Raio, Angulo Inicial, Angulo Final e Sentido: true horário, false anti horário 
+    // Posição X e Y definem o centro do circulo, Raio o comprimento do centro até a estremidade  
 
-        px += dx
-        py += dy
-        anima = requestAnimationFrame(desenhar)
-        
-        //Posição Inicial
-        if(px <=0 && py <= 0){
-            dx = 1;
-            dy = 0;
-        }
-        // lateral direta 
-        if(px + largRet >= LargCan && py<=0){
-            dx= 0;
-            dy= 1;
-        }
-        //lateral inferior direita
-        if(py + AltuRet >= Altucan && px + largRet >= LargCan){
-            dx = -1;
-            dy = 0;
-        }
-        // lateral inferir esquerdo
-        if(px <= 0 && py + AltuRet >= LargCan){
-            dx = 0;
-            dy = -1;
-        }
-        }
+    let canvas = document.getElementById('desenho1');
+    let ctx = canvas.getContext('2d');
+
+    ctx.fillStyle = '#000';
+    ctx.arc(250, 250, 100, 0, 360, true)
+
     </script>
 </head>
 <body onload="desenhar()">
