@@ -9,6 +9,7 @@
         let px = 0;
         let py = 10;
         let dx = 1; // direção eixo X
+        let dy = 0;
         let largRet = AltuRet = 75;
         let LargCan = Altucan = 500;
         function desenhar(){
@@ -18,14 +19,16 @@
         ctx.clearRect(0,0,500,500);
         ctx.fillStyle ='#F00';
         ctx.fillRect(px, py, largRet, AltuRet);
-        
+        ctx.lineWidth = 3
+        ctx.strokeStyle = '#000'
+        ctx.strokeRect(px, py, largRet, AltuRet);
+
         px+=dx
         anima = requestAnimationFrame(desenhar)
-        if(px + largRet >= LargCan){
+        if(px + largRet >= LargCan || px <= 0){
             dx *= -1
         }
 
-        
         }
     </script>
 </head>
