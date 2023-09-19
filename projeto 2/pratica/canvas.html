@@ -15,14 +15,24 @@
     let canvas = document.getElementById('desenho1');
     let ctx = canvas.getContext('2d');
    
-    ctx.fillStyle = '#000';
-    ctx.arc(250, 250, 100, 0, (Math.PI/180)*360, true)
-    ctx.fill()
+    let circulosMax = 40
 
-    ctx.beginPath(); // inicia um novo desenho
-    ctx.fillStyle = '#F00';
-    ctx.arc(260, 260, 100, 0, (Math.PI/180)*360, true)
-    ctx.fill()
+    for(let i = 0; i < circulosMax; i++ ){
+        let px = Math.random()* 500;
+        let py = Math.random()* 500;
+        let tam = Math.random()* 50 + 10;
+        let angIni = (Math.PI/180)*360;
+        let angFim = (Math.PI/180)*0;
+        let r = Math.random()* 256;
+        let g = Math.random()* 256;
+        let b =Math.random()* 256;
+
+        ctx.beginPath();
+        ctx.fillStyle = `rgb(${r},${g} ,${b})`;
+        ctx.arc(px, py, tam, angIni, angFim, true)
+        ctx.fill()
+        ctx.closePath();
+    }
  }
     </script>
 </head>
