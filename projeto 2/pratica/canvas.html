@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>canvas</title>
     <script>
-    // Argumentos ARC
-    // Posição X, Posição Y, Raio, Angulo Inicial, Angulo Final e Sentido: true horário, false anti horário 
-    // Posição X e Y definem o centro do circulo, Raio o comprimento do centro até a estremidade  
-    // utilizar numeros "puros" para representar os angulos do circulo não funciona, devesse fazer da seguinte forma
-    //(Math.PI/180)*angulo em ambas as posições
+        // Argumentos ARC
+        // Posição X, Posição Y, Raio, Angulo Inicial, Angulo Final e Sentido: true anti horário, false horário 
+        // Posição X e Y definem o centro do circulo, Raio o comprimento do centro até a estremidade  
+        // utilizar numeros "puros" para representar os angulos do circulo não funciona, devesse fazer da seguinte forma
+        //(Math.PI/180)*angulo em ambas as posições
 
- function desenhar(){
-    let canvas = document.getElementById('desenho1');
-    let ctx = canvas.getContext('2d');
-   
-    let circulosMax = 40
+        function desenhar() {
+            let canvas = document.getElementById('desenho1');
+            let ctx = canvas.getContext('2d');
 
-    for(let i = 0; i < circulosMax; i++ ){
-        let px = Math.random()* 500;
-        let py = Math.random()* 500;
-        let tam = Math.random()* 50 + 10;
-        let angIni = (Math.PI/180)*360;
-        let angFim = (Math.PI/180)*0;
-        let r = Math.random()* 256;
-        let g = Math.random()* 256;
-        let b =Math.random()* 256;
+            let px = canvas.width / 2; // Calcula o centro X do canvas
+            let py = canvas.height / 2; // Calcula o centro Y do canvas
+            let raio = 100; // Raio do círculo
+            let r = Math.random()*256;
+            let g = Math.random()*256;
+            let b = Math.random()*256;
+            let cor = `rgb(${r}, ${g}, ${b})`;
 
-        ctx.beginPath();
-        ctx.fillStyle = `rgb(${r},${g} ,${b})`;
-        ctx.arc(px, py, tam, angIni, angFim, true)
-        ctx.fill()
-        ctx.closePath();
-    }
- }
+            ctx.beginPath();
+            ctx.fillStyle = cor;
+            ctx.moveTo(px, py)
+            ctx.arc(px, py, raio, (Math.PI/180)*0, (Math.PI/180)*60, false);
+            ctx.fill();
+            ctx.closePath();
+        }
     </script>
 </head>
+
 <body onload="desenhar()">
     <canvas id="desenho1" width="500px" height="500px" style="border: 1px solid #000;">
         <h1>Seu navegador não é compatível com o canvas</h1>
     </canvas>
 </body>
+
 </html>
