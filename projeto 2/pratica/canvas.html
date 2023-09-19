@@ -8,13 +8,17 @@
     // Argumentos ARC
     // Posição X, Posição Y, Raio, Angulo Inicial, Angulo Final e Sentido: true horário, false anti horário 
     // Posição X e Y definem o centro do circulo, Raio o comprimento do centro até a estremidade  
+    // utilizar numeros "puros" para representar os angulos do circulo não funciona, devesse fazer da seguinte forma
+    //(Math.PI/180)*angulo em ambas as posições
 
+ function desenhar(){
     let canvas = document.getElementById('desenho1');
     let ctx = canvas.getContext('2d');
-
     ctx.fillStyle = '#000';
-    ctx.arc(250, 250, 100, 0, 360, true)
+    ctx.arc(250, 250, 100, 0, (Math.PI/180)*360, true)
+    ctx.fill()
 
+ }
     </script>
 </head>
 <body onload="desenhar()">
