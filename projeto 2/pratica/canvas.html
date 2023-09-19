@@ -7,7 +7,7 @@
     <script>
         let anima
         let px = 0;
-        let py = 10;
+        let py = 0;
         let dx = 1; // direção eixo X
         let dy = 0;
         let largRet = AltuRet = 75;
@@ -23,12 +23,30 @@
         ctx.strokeStyle = '#000'
         ctx.strokeRect(px, py, largRet, AltuRet);
 
-        px+=dx
+        px += dx
+        py += dy
         anima = requestAnimationFrame(desenhar)
-        if(px + largRet >= LargCan || px <= 0){
-            dx *= -1
+        
+        //Posição Inicial
+        if(px <=0 && py <= 0){
+            dx = 1;
+            dy = 0;
         }
-
+        // lateral direta 
+        if(px + largRet >= LargCan && py<=0){
+            dx= 0;
+            dy= 1;
+        }
+        //lateral inferior direita
+        if(py + AltuRet >= Altucan && px + largRet >= LargCan){
+            dx = -1;
+            dy = 0;
+        }
+        // lateral inferir esquerdo
+        if(px <= 0 && py + AltuRet >= LargCan){
+            dx = 0;
+            dy = -1;
+        }
         }
     </script>
 </head>
