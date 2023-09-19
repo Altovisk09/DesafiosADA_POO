@@ -6,17 +6,24 @@
     <title>canvas</title>
     <script>
         let anima
-        let px = 0
+        let px = 0;
+        let py = 10;
+        let dx = 1; // direção eixo X
+        let largRet = AltuRet = 75;
+        let LargCan = Altucan = 500;
         function desenhar(){
         let canvas = document.getElementById('desenho1');
         let ctx = canvas.getContext('2d');
         
+        ctx.clearRect(0,0,500,500);
         ctx.fillStyle ='#F00';
-        ctx.fillRect(px, 10, 75, 75);
+        ctx.fillRect(px, py, largRet, AltuRet);
         
-        px++
+        px+=dx
         anima = requestAnimationFrame(desenhar)
-        
+        if(px + largRet >= LargCan){
+            dx *= -1
+        }
 
         
         }
