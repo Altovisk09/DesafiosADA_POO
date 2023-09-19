@@ -14,16 +14,21 @@
  function desenhar(){
     let canvas = document.getElementById('desenho1');
     let ctx = canvas.getContext('2d');
+   
     ctx.fillStyle = '#000';
     ctx.arc(250, 250, 100, 0, (Math.PI/180)*360, true)
     ctx.fill()
 
+    ctx.beginPath(); // inicia um novo desenho
+    ctx.fillStyle = '#F00';
+    ctx.arc(260, 260, 100, 0, (Math.PI/180)*360, true)
+    ctx.fill()
  }
     </script>
 </head>
 <body onload="desenhar()">
     <canvas id="desenho1" width="500px" height="500px" style="border: 1px solid #000;">
-
+        <h1>Seu navegador não é compatível com o canvas</h1>
     </canvas>
 </body>
 </html>
