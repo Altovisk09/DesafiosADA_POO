@@ -5,48 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>canvas</title>
+    <link rel="stylesheet" href="./canva.css">
 </head>
 
 <body>
-    <canvas id="desenho1" width="500" height="500" style="border: 1px solid #000;">
+    <canvas id="desenho1" width="878" height="500" style="border: 1px solid #000;">
         Seu navegador não é compatível com o canvas.
     </canvas>
-    
     <script>
         let canvas = document.getElementById('desenho1');
         let ctx = canvas.getContext('2d');
 
         let human = new Image();
         human.src = './char_a_p1_0bas_humn_v01.png';
+        let px = 0;
+        let py = 0;
         let numSprite = 0;
-        let colunSprite = 6;
+        let colunSprite;
         let posIniX = 0;
         let posIniY = 0;
         let SpriteX = 8;
         let SpriteY = 8;
+        let velocidade = 2;
 
-        human.addEventListener('load', ()=>{
-            let largImg = human.width; 
-            let altImg = human.height; 
-            let largSprite = largImg/SpriteX;
-            let altSprite = altImg/SpriteY;
+        human.addEventListener('load', () => {
+            let largImg = human.width;
+            let altImg = human.height;
+            let largSprite = largImg / SpriteX;
+            let altSprite = altImg / SpriteY;
 
-            let anima = setInterval(()=>{
+            let anima = setInterval(() => {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                posIniY = colunSprite*altSprite;
-                numSprite++
-                if(numSprite >= 8){
-                    numSprite = 0
-                }
+                colunSprite = 0;
+                posIniY = colunSprite * altSprite;
+                posIniX = numSprite * largSprite;
 
-                posIniX = numSprite*largSprite;
-                
                 // imagem XiniR YiniR LargRecorte Altrecorte posX posY LargImagem AltImagem
-                ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, 0, 0, 200, 200);
+                ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, px, py, 100, 100);
             }, 200)
+
+            window.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowRight') {
+                    px += velocidade;
+                } else if (event.key === 'ArrowLeft') {
+                    px -= velocidade;
+                }
+                if (event.key === 'ArrowUp'){
+                    py -= velocidade;
+                }else if(event.key === 'ArrowDown'){
+                    py += velocidade;
+                }
+            })
         })
 
-        
+
     </script>
 </body>
 
