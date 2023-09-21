@@ -26,7 +26,7 @@
         let posIniY = 0;
         let SpriteX = 8;
         let SpriteY = 8;
-        let velocidade = 1;
+        let velocidade = 2;
         let direita = false, esquerda = false, cima = false, baixo = false;
 
         human.addEventListener('load', () => {
@@ -41,19 +41,36 @@
                 posIniX = numSprite * largSprite;
 
                 //imagem XiniR YiniR LargRecorte Altrecorte posX posY LargImagem AltImagem
-                ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, px, py, 100, 100);
+                ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, px, py, 200, 200);
             }
 
             function animacao(){
                 if (direita) {
                     px += velocidade;
+                    numSprite++
+                if(numSprite >= 5){
+                    numSprite = 0;
+                }
                 } else if (esquerda) {
                     px -= velocidade;
+                    numSprite++
+                if(numSprite >= 5){
+                    numSprite = 0;
+                }
                 }
                 if (cima) {
                     py -= velocidade;
+
+                    numSprite++
+                if(numSprite >= 5){
+                    numSprite = 0;
+                }
                 } else if (baixo) {
                     py += velocidade;
+                    numSprite++
+                if(numSprite >= 5){
+                    numSprite = 0;
+                }
                 }
                 requestAnimationFrame(animacao);
                 desenhar();
@@ -67,35 +84,16 @@
             if (event.key === 'ArrowRight') {
                 direita = true;
                 colunSprite = 6;
-                numSprite++
-                if(numSprite >= 5){
-                    numSprite = 0;
-                }
-
             } else if (event.key === 'ArrowLeft') {
                 esquerda = true;
                 colunSprite = 7;
-                numSprite++
-                if(numSprite >= 5){
-                    numSprite = 0;
-                }
             }
             if (event.key === 'ArrowUp') {
                 cima = true;
                 colunSprite = 5;
-                numSprite++
-                if(numSprite >= 5){
-                    numSprite = 0;
-                }
-
             } else if (event.key === 'ArrowDown') {
                 baixo = true;
                 colunSprite = 4;
-                numSprite++
-                if(numSprite >= 5){
-                    numSprite = 0;
-                }
-
             }
         })
 
