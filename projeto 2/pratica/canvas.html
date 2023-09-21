@@ -26,7 +26,7 @@
         let posIniY = 0;
         let SpriteX = 8;
         let SpriteY = 8;
-        let velocidade = 2;
+        let velocidade = 5;
         let direita = false, esquerda = false, cima = false, baixo = false;
 
         human.addEventListener('load', () => {
@@ -35,48 +35,66 @@
             let largSprite = largImg / SpriteX;
             let altSprite = altImg / SpriteY;
 
-            function desenhar(){
+            function desenhar() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 posIniY = colunSprite * altSprite;
                 posIniX = numSprite * largSprite;
 
                 //imagem XiniR YiniR LargRecorte Altrecorte posX posY LargImagem AltImagem
-                ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, px, py, 200, 200);
+                ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, px, py, 150, 150);
+                console.log(`px:${px} \npy:${py}\n\n width:${largSprite}\n height:${altSprite}` )
             }
-
-            function animacao(){
+            desenhar()
+            function animacao() {
+                cWidth = canvas.width;
+                cHeigth = canvas.height;
+            
+            altSprite
                 if (direita) {
                     px += velocidade;
                     numSprite++
-                if(numSprite >= 5){
-                    numSprite = 0;
-                }
+                    if (numSprite >= 5) {
+                        numSprite = 0;
+                    }
+                    if(px + largSprite >= cWidth - 36){
+                        px = cWidth - largSprite - 36
+                    }
                 } else if (esquerda) {
                     px -= velocidade;
                     numSprite++
-                if(numSprite >= 5){
-                    numSprite = 0;
-                }
+                    if (numSprite >= 5) {
+                        numSprite = 0;
+                    }
+                     if (px <= -54) {
+                         px = -54;
+                     }
                 }
                 if (cima) {
                     py -= velocidade;
 
                     numSprite++
-                if(numSprite >= 5){
-                    numSprite = 0;
-                }
+                    if (numSprite >= 5) {
+                        numSprite = 0;
+                    }
+                    if (py <= -34) {
+                         py = -34;
+                     }
                 } else if (baixo) {
                     py += velocidade;
                     numSprite++
-                if(numSprite >= 5){
-                    numSprite = 0;
+                    if (numSprite >= 5) {
+                        numSprite = 0;
+                    }
+                    if (py + altSprite >= cHeigth - 36) {
+                        py = cHeigth - altSprite - 36;
+                     }
                 }
-                }
-                requestAnimationFrame(animacao);
                 desenhar();
-            }
 
-            // Iniciar a animação após o carregamento da imagem
+                setTimeout(() => {
+                    requestAnimationFrame(animacao);
+                }, 50);
+            }
             animacao();
         })
 
@@ -84,6 +102,7 @@
             if (event.key === 'ArrowRight') {
                 direita = true;
                 colunSprite = 6;
+
             } else if (event.key === 'ArrowLeft') {
                 esquerda = true;
                 colunSprite = 7;
@@ -108,7 +127,7 @@
             } else if (event.key === 'ArrowDown') {
                 baixo = false;
             }
-            if(!direita && !esquerda && !cima && !baixo){
+            if (!direita && !esquerda && !cima && !baixo) {
                 colunSprite = 0;
                 numSprite = 0;
             }
