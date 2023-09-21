@@ -5,30 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>canvas</title>
-    <script>
-        // Argumentos ARCTO - Curvinha
-        // X1, Y1, X2, Y2, RAIO
-
-        function desenhar() {
-            let canvas = document.getElementById('desenho1');
-            let ctx = canvas.getContext('2d');
-
-            ctx.beginPath();
-            ctx.moveTo(0, 0); //Posição inicial
-            ctx.lineTo(200, 250); //Linha reta até
-            ctx.arcTo(250, 300, 500, 0, 50); // Define a "curvinha" com base no raio da linha até a referencia
-            ctx.lineTo(500, 0); //Linha reta até
-            ctx.closePath();
-            ctx.stroke(); //Desenha 
-
-        }
-    </script>
 </head>
 
-<body onload="desenhar()">
-    <canvas id="desenho1" width="500px" height="500px" style="border: 1px solid #000;">
-        <h1>Seu navegador não é compatível com o canvas</h1>
+<body>
+    <canvas id="desenho1" width="500" height="500" style="border: 1px solid #000;">
+        Seu navegador não é compatível com o canvas.
     </canvas>
+    
+    <script>
+        let canvas = document.getElementById('desenho1');
+        let ctx = canvas.getContext('2d');
+
+        let human = new Image();
+        human.src = './char_a_p1_0bas_humn_v01.png';
+        let numSprite = 0;
+        let posIniX = 0;
+        let posIniY = 0;
+        let SpriteX = 8;
+        let SpriteY = 8;
+
+        human.addEventListener('load', ()=>{
+            let largImg = human.width; 
+            let altImg = human.height; 
+            let largSprite = largImg/SpriteX;
+            let altSprite = altImg/SpriteY;
+
+            // imagem XiniR YiniR LargRecorte Altrecorte posX posY LargImagem AltImagem
+            ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, 0, 0, 200, 200);
+
+        })
+
+        
+    </script>
 </body>
 
 </html>
