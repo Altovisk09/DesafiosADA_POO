@@ -27,6 +27,7 @@
         let SpriteX = 8;
         let SpriteY = 8;
         let velocidade = 2;
+        let direita = false, esquerda = false, cima = false, baixo = false;
 
         human.addEventListener('load', () => {
             let largImg = human.width;
@@ -34,31 +35,60 @@
             let largSprite = largImg / SpriteX;
             let altSprite = altImg / SpriteY;
 
-            let anima = setInterval(() => {
+            function desenhar(){
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 colunSprite = 0;
                 posIniY = colunSprite * altSprite;
                 posIniX = numSprite * largSprite;
 
-                // imagem XiniR YiniR LargRecorte Altrecorte posX posY LargImagem AltImagem
+                //imagem XiniR YiniR LargRecorte Altrecorte posX posY LargImagem AltImagem
                 ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, px, py, 100, 100);
-            }, 200)
+            }
 
-            window.addEventListener('keydown', (event) => {
-                if (event.key === 'ArrowRight') {
+            function animacao(){
+                if (direita) {
                     px += velocidade;
-                } else if (event.key === 'ArrowLeft') {
+                } else if (esquerda) {
                     px -= velocidade;
                 }
-                if (event.key === 'ArrowUp'){
+                if (cima) {
                     py -= velocidade;
-                }else if(event.key === 'ArrowDown'){
+                } else if (baixo) {
                     py += velocidade;
                 }
-            })
+                requestAnimationFrame(animacao);
+                desenhar();
+            }
+
+            // Iniciar a animação após o carregamento da imagem
+            animacao();
         })
 
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                direita = true;
+            } else if (event.key === 'ArrowLeft') {
+                esquerda = true;
+            }
+            if (event.key === 'ArrowUp') {
+                cima = true;
+            } else if (event.key === 'ArrowDown') {
+                baixo = true;
+            }
+        })
 
+        window.addEventListener('keyup', (event) => {
+            if (event.key === 'ArrowRight') {
+                direita = false;
+            } else if (event.key === 'ArrowLeft') {
+                esquerda = false;
+            }
+            if (event.key === 'ArrowUp') {
+                cima = false;
+            } else if (event.key === 'ArrowDown') {
+                baixo = false;
+            }
+        })
     </script>
 </body>
 
