@@ -34,7 +34,14 @@
             let altImg = human.height;
             let largSprite = largImg / SpriteX;
             let altSprite = altImg / SpriteY;
+            const desenho1 = ()=>{
+                posIniY = 0;
+                posIniX = 0;
 
+                //imagem XiniR YiniR LargRecorte Altrecorte posX posY LargImagem AltImagem
+                ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, px, py, 150, 150);
+            }
+            desenho1();
             function desenhar() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 posIniY = colunSprite * altSprite;
@@ -42,7 +49,6 @@
 
                 //imagem XiniR YiniR LargRecorte Altrecorte posX posY LargImagem AltImagem
                 ctx.drawImage(human, posIniX, posIniY, largSprite, altSprite, px, py, 150, 150);
-                console.log(`px:${px} \npy:${py}\n\n width:${largSprite}\n height:${altSprite}` )
             }
             desenhar()
             function animacao() {
