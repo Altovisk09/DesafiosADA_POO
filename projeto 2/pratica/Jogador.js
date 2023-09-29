@@ -25,16 +25,18 @@ class Jogador {
         this.altSprite = this.altImg / this.SpriteY;
 
         this.jogador.addEventListener('load', () => {
-            this.animacao()
-        })
+            this.animacao();
+        });
     }
+
     animacao() {
+        let cWidth = this.canvas.width;
+        let cHeigth = this.canvas.height;
 
         window.addEventListener('keydown', (event) => {
             if (event.key === 'ArrowRight') {
                 this.direita = true;
                 this.colunSprite = 6;
-
             } else if (event.key === 'ArrowLeft') {
                 this.esquerda = true;
                 this.colunSprite = 7;
@@ -46,7 +48,8 @@ class Jogador {
                 this.baixo = true;
                 this.colunSprite = 4;
             }
-        })
+        });
+
         window.addEventListener('keyup', (event) => {
             if (event.key === 'ArrowRight') {
                 this.direita = false;
@@ -62,23 +65,20 @@ class Jogador {
                 this.colunSprite = 0;
                 this.numSprite = 0;
             }
-        })
-        
-        let cWidth = this.canvas.width;
-        let cHeigth = this.canvas.height;
+        });
 
         if (this.direita) {
             this.px += this.velocidade;
-            this.numSprite++
+            this.numSprite++;
             if (this.numSprite >= 5) {
                 this.numSprite = 0;
             }
             if (this.px + this.largSprite >= cWidth - 36) {
-                this.px = cWidth - this.largSprite - 36
+                this.px = cWidth - this.largSprite - 36;
             }
         } else if (this.esquerda) {
             this.px -= this.velocidade;
-            this.numSprite++
+            this.numSprite++;
             if (this.numSprite >= 5) {
                 this.numSprite = 0;
             }
@@ -88,8 +88,7 @@ class Jogador {
         }
         if (this.cima) {
             this.py -= this.velocidade;
-
-            this.numSprite++
+            this.numSprite++;
             if (this.numSprite >= 5) {
                 this.numSprite = 0;
             }
@@ -98,7 +97,7 @@ class Jogador {
             }
         } else if (this.baixo) {
             this.py += this.velocidade;
-            this.numSprite++
+            this.numSprite++;
             if (this.numSprite >= 5) {
                 this.numSprite = 0;
             }
@@ -107,14 +106,13 @@ class Jogador {
             }
         }
 
-        setTimeout(() => {
-            requestAnimationFrame(this.animacao);
-        }, 50);
+        
+        requestAnimationFrame(() => this.animacao());
         this.desenhar();
     }
 
     desenhar() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.drawImage(this.jogador, this.posIniX, this.posIniY, this.largSprite, this.altSprite, this.px, this.py, 150, 150)
+        this.ctx.drawImage(this.jogador, this.posIniX, this.posIniY, this.largSprite, this.altSprite, this.px, this.py, 150, 150);
     }
 }
