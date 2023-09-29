@@ -12,21 +12,13 @@
     <canvas id="desenho1" width="878" height="500" style="border: 1px solid #000;">
         Seu navegador não é compatível com o canvas.
     </canvas>
+    <script src="./Jogador.js"></script>
     <script>
-        const Jogador = require('./Jogador.js')
-
         let canvas = document.getElementById('desenho1');
         let ctx = canvas.getContext('2d');
-        
-        let teclado = {
-            direita: false, 
-            esquerda: false, 
-            cima: false, 
-            baixo: false
-        } 
 
-        const jogador1 = new Jogador(ctx, canvas, teclado);
-        
+        const jogador1 = new Jogador(ctx, canvas);
+
     </script>
 </body>
 

@@ -1,8 +1,7 @@
 class Jogador {
-    constructor(ctx, canvas, teclado) {
+    constructor(ctx, canvas) {
         this.ctx = ctx;
         this.canvas = canvas;
-        this.teclado = teclado;
         this.px = 0;
         this.py = 0;
         this.numSprite = 0;
@@ -13,6 +12,11 @@ class Jogador {
         this.SpriteY = 8;
         this.velocidade = 5;
 
+        this.direita = false;
+        this.esquerda = false;
+        this.cima = false;
+        this.baixo = false;
+
         this.jogador = new Image();
         this.jogador.src = './char_a_p1_0bas_humn_v01.png';
         this.largImg = this.jogador.width;
@@ -21,27 +25,49 @@ class Jogador {
         this.altSprite = this.altImg / this.SpriteY;
 
         this.jogador.addEventListener('load', () => {
-            this.desenhar()
+            this.animacao()
         })
     }
-
-    gerenciar() {
-        if (this.teclado.direita) {
-            this.px += this.velocidade
-        } else if (this.teclado.esquerda) {
-            this.px -= this.velocidade
-        } else if (this.teclado.cima) {
-            this.py -= this.velocidade
-        } else if (this.teclado.baixo) {
-            this.py += this.velocidade
-        }
-    }
-
     animacao() {
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                this.direita = true;
+                this.colunSprite = 6;
+
+            } else if (event.key === 'ArrowLeft') {
+                this.esquerda = true;
+                this.colunSprite = 7;
+            }
+            if (event.key === 'ArrowUp') {
+                this.cima = true;
+                this.colunSprite = 5;
+            } else if (event.key === 'ArrowDown') {
+                this.baixo = true;
+                this.colunSprite = 4;
+            }
+        })
+        window.addEventListener('keyup', (event) => {
+            if (event.key === 'ArrowRight') {
+                this.direita = false;
+            } else if (event.key === 'ArrowLeft') {
+                this.esquerda = false;
+            }
+            if (event.key === 'ArrowUp') {
+                this.cima = false;
+            } else if (event.key === 'ArrowDown') {
+                this.baixo = false;
+            }
+            if (!this.direita && !this.esquerda && !this.cima && !this.baixo) {
+                this.colunSprite = 0;
+                this.numSprite = 0;
+            }
+        })
+        
         let cWidth = this.canvas.width;
         let cHeigth = this.canvas.height;
 
-        if (this.teclado.direita) {
+        if (this.direita) {
             this.px += this.velocidade;
             this.numSprite++
             if (this.numSprite >= 5) {
@@ -50,7 +76,7 @@ class Jogador {
             if (this.px + this.largSprite >= cWidth - 36) {
                 this.px = cWidth - this.largSprite - 36
             }
-        } else if (this.teclado.esquerda) {
+        } else if (this.esquerda) {
             this.px -= this.velocidade;
             this.numSprite++
             if (this.numSprite >= 5) {
@@ -60,7 +86,7 @@ class Jogador {
                 this.px = -54;
             }
         }
-        if (this.teclado.cima) {
+        if (this.cima) {
             this.py -= this.velocidade;
 
             this.numSprite++
@@ -70,7 +96,7 @@ class Jogador {
             if (this.py <= -34) {
                 this.py = -34;
             }
-        } else if (this.teclado.baixo) {
+        } else if (this.baixo) {
             this.py += this.velocidade;
             this.numSprite++
             if (this.numSprite >= 5) {
@@ -84,52 +110,11 @@ class Jogador {
         setTimeout(() => {
             requestAnimationFrame(this.animacao);
         }, 50);
+        this.desenhar();
     }
 
-    sprites() {
-        window.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') {
-                direita = true;
-                colunSprite = 6;
-
-            } else if (event.key === 'ArrowLeft') {
-                esquerda = true;
-                colunSprite = 7;
-            }
-            if (event.key === 'ArrowUp') {
-                cima = true;
-                colunSprite = 5;
-            } else if (event.key === 'ArrowDown') {
-                baixo = true;
-                colunSprite = 4;
-            }
-        })
-
-        window.addEventListener('keyup', (event) => {
-            if (event.key === 'ArrowRight') {
-                direita = false;
-            } else if (event.key === 'ArrowLeft') {
-                esquerda = false;
-            }
-            if (event.key === 'ArrowUp') {
-                cima = false;
-            } else if (event.key === 'ArrowDown') {
-                baixo = false;
-            }
-            if (!direita && !esquerda && !cima && !baixo) {
-                colunSprite = 0;
-                numSprite = 0;
-            }
-        })
-    }
     desenhar() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        this.gerenciar();
-        this.animacao();
-
         this.ctx.drawImage(this.jogador, this.posIniX, this.posIniY, this.largSprite, this.altSprite, this.px, this.py, 150, 150)
     }
 }
-
-module.exports = Jogador;
