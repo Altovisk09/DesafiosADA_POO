@@ -34,7 +34,7 @@
             let altImg = human.height;
             let largSprite = largImg / SpriteX;
             let altSprite = altImg / SpriteY;
-            const desenho1 = ()=>{
+            const desenho1 = () => {
                 posIniY = 0;
                 posIniX = 0;
 
@@ -54,15 +54,14 @@
             function animacao() {
                 cWidth = canvas.width;
                 cHeigth = canvas.height;
-            
-            altSprite
+
                 if (direita) {
                     px += velocidade;
                     numSprite++
                     if (numSprite >= 5) {
                         numSprite = 0;
                     }
-                    if(px + largSprite >= cWidth - 36){
+                    if (px + largSprite >= cWidth - 36) {
                         px = cWidth - largSprite - 36
                     }
                 } else if (esquerda) {
@@ -71,9 +70,9 @@
                     if (numSprite >= 5) {
                         numSprite = 0;
                     }
-                     if (px <= -54) {
-                         px = -54;
-                     }
+                    if (px <= -54) {
+                        px = -54;
+                    }
                 }
                 if (cima) {
                     py -= velocidade;
@@ -83,8 +82,8 @@
                         numSprite = 0;
                     }
                     if (py <= -34) {
-                         py = -34;
-                     }
+                        py = -34;
+                    }
                 } else if (baixo) {
                     py += velocidade;
                     numSprite++
@@ -93,7 +92,7 @@
                     }
                     if (py + altSprite >= cHeigth - 36) {
                         py = cHeigth - altSprite - 36;
-                     }
+                    }
                 }
                 desenhar();
 
