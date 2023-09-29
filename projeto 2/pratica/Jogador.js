@@ -12,8 +12,14 @@ class Jogador{
         this.SpriteX = 8;
         this.SpriteY = 8;
         this.velocidade = 5;
+
         this.jogador = new Image();
         this.jogador.src = './char_a_p1_0bas_humn_v01.png';
+        this.largImg = this.jogador.width;
+        this.altImg = this.jogador.height;
+        this.largSprite = this.largImg / this.SpriteX;
+        this.altSprite = this.altImg / this.SpriteY;
+        
         this.jogador.addEventListener('load', ()=>{
             this.desenhar()
         })
@@ -32,57 +38,53 @@ class Jogador{
     }
 
     animacao(){
-        cWidth = canvas.width;
-                cHeigth = canvas.height;
+            let cWidth = this.canvas.width;
+            let cHeigth = this.canvas.height;
             
-            altSprite
-                if (direita) {
-                    px += velocidade;
-                    numSprite++
-                    if (numSprite >= 5) {
-                        numSprite = 0;
+                if (this.teclado.direita) {
+                    this.px += this.velocidade;
+                    this.numSprite++
+                    if (this.numSprite >= 5) {
+                        this.numSprite = 0;
                     }
-                    if(px + largSprite >= cWidth - 36){
-                        px = cWidth - largSprite - 36
+                    if(this.px + this.largSprite >= cWidth - 36){
+                        this.px = cWidth - this.largSprite - 36
                     }
-                } else if (esquerda) {
-                    px -= velocidade;
-                    numSprite++
-                    if (numSprite >= 5) {
-                        numSprite = 0;
+                } else if (this.teclado.esquerda) {
+                    this.px -= this.velocidade;
+                    this.numSprite++
+                    if (this.numSprite >= 5) {
+                        this.numSprite = 0;
                     }
-                     if (px <= -54) {
-                         px = -54;
+                     if (this.px <= -54) {
+                         this.px = -54;
                      }
                 }
-                if (cima) {
-                    py -= velocidade;
+                if (this.teclado.cima) {
+                    this.py -= this.velocidade;
 
-                    numSprite++
-                    if (numSprite >= 5) {
-                        numSprite = 0;
+                    this.numSprite++
+                    if (this.numSprite >= 5) {
+                        this.numSprite = 0;
                     }
-                    if (py <= -34) {
-                         py = -34;
+                    if (this.py <= -34) {
+                         this.py = -34;
                      }
-                } else if (baixo) {
-                    py += velocidade;
-                    numSprite++
-                    if (numSprite >= 5) {
-                        numSprite = 0;
+                } else if (this.teclado.baixo) {
+                    this.py += this.velocidade;
+                    this.numSprite++
+                    if (this.numSprite >= 5) {
+                        this.numSprite = 0;
                     }
-                    if (py + altSprite >= cHeigth - 36) {
-                        py = cHeigth - altSprite - 36;
+                    if (this.py + this.altSprite >= cHeigth - 36) {
+                        this.py = cHeigth - this.altSprite - 36;
                      }
                 }
-                desenhar();
 
                 setTimeout(() => {
-                    requestAnimationFrame(animacao);
+                    requestAnimationFrame(this.animacao);
                 }, 50);
             }
-            animacao();
-    }
 
     desenhar(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -90,15 +92,7 @@ class Jogador{
         this.gerenciar();
         this.animacao();
 
-        let largImg = this.jogador.width;
-        let altImg = this.jogador.height;
-        let largSprite = largImg / this.SpriteX;
-        let altSprite = altImg / this.SpriteY;
-
-                this.posIniY = colunSprite * altSprite;
-                this.posIniX = numSprite * largSprite;
-
-        this.ctx.drawImage(this.jogador, this.posIniX, this.posIniY, largSprite, altSprite, this.px, this.py, 150, 150)
+        this.ctx.drawImage(this.jogador, this.posIniX, this.posIniY, this.largSprite, this.altSprite, this.px, this.py, 150, 150)
     }
 }
 
