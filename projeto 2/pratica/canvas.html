@@ -13,6 +13,8 @@
         Seu navegador não é compatível com o canvas.
     </canvas>
     <script>
+        const Jogador = require('./Jogador.js')
+
         let canvas = document.getElementById('desenho1');
         let ctx = canvas.getContext('2d');
         
@@ -23,40 +25,8 @@
             baixo: false
         } 
 
-        window.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') {
-                direita = true;
-                colunSprite = 6;
-
-            } else if (event.key === 'ArrowLeft') {
-                esquerda = true;
-                colunSprite = 7;
-            }
-            if (event.key === 'ArrowUp') {
-                cima = true;
-                colunSprite = 5;
-            } else if (event.key === 'ArrowDown') {
-                baixo = true;
-                colunSprite = 4;
-            }
-        })
-
-        window.addEventListener('keyup', (event) => {
-            if (event.key === 'ArrowRight') {
-                direita = false;
-            } else if (event.key === 'ArrowLeft') {
-                esquerda = false;
-            }
-            if (event.key === 'ArrowUp') {
-                cima = false;
-            } else if (event.key === 'ArrowDown') {
-                baixo = false;
-            }
-            if (!direita && !esquerda && !cima && !baixo) {
-                colunSprite = 0;
-                numSprite = 0;
-            }
-        })
+        const jogador1 = new Jogador(ctx, canvas, teclado);
+        
     </script>
 </body>
 
