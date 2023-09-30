@@ -37,7 +37,6 @@ class Jogador {
             if (event.key === 'ArrowRight') {
                 this.direita = true;
                 this.colunSprite = 6;
-                console.log(this.colunSprite)
             } else if (event.key === 'ArrowLeft') {
                 this.esquerda = true;
                 this.colunSprite = 7;
@@ -107,10 +106,11 @@ class Jogador {
             }
         }
 
-        this.desenhar()
         setTimeout(() => {
-            requestAnimationFrame(this.animacao());
+            requestAnimationFrame(this.animacao.bind(this));
+
         }, 50);
+        this.desenhar()
     }
 
     desenhar() {
