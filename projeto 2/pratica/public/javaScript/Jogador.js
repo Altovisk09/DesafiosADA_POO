@@ -18,7 +18,7 @@ class Jogador {
         this.baixo = false;
 
         this.jogador = new Image();
-        this.jogador.src = './char_a_p1_0bas_humn_v01.png';
+        this.jogador.src = './public/images/char_a_p1_0bas_humn_v01.png';
         this.largImg = this.jogador.width;
         this.altImg = this.jogador.height;
         this.largSprite = this.largImg / this.spriteX;
