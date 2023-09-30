@@ -8,8 +8,8 @@ class Jogador {
         this.colunSprite;
         this.posIniX = 0;
         this.posIniY = 0;
-        this.SpriteX = 8;
-        this.SpriteY = 8;
+        this.spriteX = 8;
+        this.spriteY = 8;
         this.velocidade = 5;
 
         this.direita = false;
@@ -21,8 +21,8 @@ class Jogador {
         this.jogador.src = './char_a_p1_0bas_humn_v01.png';
         this.largImg = this.jogador.width;
         this.altImg = this.jogador.height;
-        this.largSprite = this.largImg / this.SpriteX;
-        this.altSprite = this.altImg / this.SpriteY;
+        this.largSprite = this.largImg / this.spriteX;
+        this.altSprite = this.altImg / this.spriteY;
 
         this.jogador.addEventListener('load', () => {
             this.animacao();
@@ -37,6 +37,7 @@ class Jogador {
             if (event.key === 'ArrowRight') {
                 this.direita = true;
                 this.colunSprite = 6;
+                console.log(this.colunSprite)
             } else if (event.key === 'ArrowLeft') {
                 this.esquerda = true;
                 this.colunSprite = 7;
@@ -106,13 +107,18 @@ class Jogador {
             }
         }
 
-        
-        requestAnimationFrame(() => this.animacao());
-        this.desenhar();
+        this.desenhar()
+        setTimeout(() => {
+            requestAnimationFrame(this.animacao());
+        }, 50);
     }
 
     desenhar() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+        this.posIniX = this.numSprite * this.largSprite;
+        this.posIniY = this.colunSprite * this.altSprite;
+        
         this.ctx.drawImage(this.jogador, this.posIniX, this.posIniY, this.largSprite, this.altSprite, this.px, this.py, 150, 150);
     }
 }
