@@ -13,30 +13,31 @@ class Bola {
         this.dirX = 0;
         this.dirY = 0;
 
-        window.addEventListener('load', () => {
-            this.animacao();
-        });
+        const btn = document.getElementById('iniciar')
+        btn.addEventListener('click', (event)=>{
+            this.movimento = true;
+            this.iniciar();
+        })
     }
 
     iniciar() {
         this.movimento = true;
         this.dirX = -1;
         this.dirY = (Math.random()*10 > 5 ? 1 : -1);
-
     }
     animacao() {
         if(this.movimento){
-            this.px = (this.dirX * this.moveSpeed);
-            this.py = (this.dirY * this.moveSpeed);
+            this.px += (this.dirX * this.moveSpeed);
+            this.py += (this.dirY * this.moveSpeed);
             if(this.px >= this.ctx.canvas.width - this.largBola){
                 this.dirX = -1;
             }else if(this.px <= 0){
                 this.dirX = 1;
             }
 
-            if(this.px >= this.ctx.canvas.heigth - this.compBola){
+            if(this.py >= this.ctx.canvas.height - this.compBola){
                 this.dirY = -1;
-            }else if(this.px <= 0){
+            }else if(this.py <= 0){
                 this.dirY = 1;
             }
     }

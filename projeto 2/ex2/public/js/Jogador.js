@@ -15,65 +15,70 @@ class Jogador {
         this.up = false;
         this.down = false;
 
-        window.addEventListener('load', () => {
-            this.animacao();
-        });
+        this.movimento = false;
+
+        const btn = document.getElementById('iniciar')
+        btn.addEventListener('click', (event)=>{
+            this.movimento = true;
+        })
     }
 
     animacao() {
-        window.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') {
-                this.right = true;
-
-            } else if (event.key === 'ArrowLeft') {
-                this.left = true;
-            }
-            if (event.key === 'ArrowUp') {
-                this.up = true;
-
-            } else if (event.key === 'ArrowDown') {
-                this.down = true;
-            }
-        });
-
-        window.addEventListener('keyup', (event) => {
-            if (event.key === 'ArrowRight') {
-                this.right = false;
-
-            } else if (event.key === 'ArrowLeft') {
-                this.left = false;
-            }
-            if (event.key === 'ArrowUp') {
-                this.up = false;
-
-            } else if (event.key === 'ArrowDown') {
-                this.down = false;
-            }
-        });
-
-        if (this.right) {
-            this.px += this.moveSpeed;
-            if (this.px + this.largPlayer >= this.cWidth) {
-                this.px = this.cWidth - this.largPlayer;
-            }
-            
-        } else if (this.left) {
-            this.px -= this.moveSpeed;
-            if (this.px <= 0) {
-                this.px = 0;
-            }
+        if(this.movimento){
+            window.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowRight') {
+                    this.right = true;
+    
+                } else if (event.key === 'ArrowLeft') {
+                    this.left = true;
+                }
+                if (event.key === 'ArrowUp') {
+                    this.up = true;
+    
+                } else if (event.key === 'ArrowDown') {
+                    this.down = true;
+                }
+            });
+    
+            window.addEventListener('keyup', (event) => {
+                if (event.key === 'ArrowRight') {
+                    this.right = false;
+    
+                } else if (event.key === 'ArrowLeft') {
+                    this.left = false;
+                }
+                if (event.key === 'ArrowUp') {
+                    this.up = false;
+    
+                } else if (event.key === 'ArrowDown') {
+                    this.down = false;
+                }
+            });
         }
-        if (this.up) {
-            this.py -= this.moveSpeed;
-            if (this.py <= 0) {
-                this.py = 0;
+
+            if (this.right) {
+                this.px += this.moveSpeed;
+                if (this.px + this.largPlayer >= this.cWidth) {
+                    this.px = this.cWidth - this.largPlayer;
+                }
+                
+            } else if (this.left) {
+                this.px -= this.moveSpeed;
+                if (this.px <= 0) {
+                    this.px = 0;
+                }
             }
-        } else if (this.down) {
-            this.py += this.moveSpeed;
-            if (this.py + this.compPlayer >= this.cHeigth) {
-                this.py = this.cHeigth - this.compPlayer;
+            if (this.up) {
+                this.py -= this.moveSpeed;
+                if (this.py <= 0) {
+                    this.py = 0;
+                }
+            } else if (this.down) {
+                this.py += this.moveSpeed;
+                if (this.py + this.compPlayer >= this.cHeigth) {
+                    this.py = this.cHeigth - this.compPlayer;
+                }
             }
-        }
         this.desenhar();
     }
 
