@@ -34,8 +34,6 @@ class Jogador {
 
     pausar() {
         this.movimento = false;
-        this.px = this.px;
-        this.py = this.px;
     }
 
     animacao() {
@@ -69,7 +67,6 @@ class Jogador {
                     this.down = false;
                 }
             });
-        }
 
             if (this.right) {
                 this.px += this.moveSpeed;
@@ -94,11 +91,57 @@ class Jogador {
                     this.py = this.cHeigth - this.compPlayer;
                 }
             }
+        }
         this.desenhar();
     }
 
     desenhar() {
     this.ctx.fillStyle = '#FF0000';
     this.ctx.fillRect(this.px, this.py, this.largPlayer, this.compPlayer);
+    }
+}
+
+class Jogador2 extends Jogador {
+    constructor(ctx, canvas) {
+        super(ctx, canvas); 
+
+
+        const btnI = document.getElementById('iniciar');
+        const btnP = document.getElementById('pausar');
+        btnI.addEventListener('click', (event)=>{
+            this.iniciar();
+        })
+
+        btnP.addEventListener('click', (event)=>{
+            this.pausar();
+        })
+    }
+
+    animacao() {
+        if (this.movimento) {
+            if (this.right) {
+                this.px += this.moveSpeed;
+                if (this.px + this.largPlayer >= this.cWidth) {
+                    this.px = this.cWidth - this.largPlayer;
+                }
+            } else if (this.left) {
+                this.px -= this.moveSpeed;
+                if (this.px <= 0) {
+                    this.px = 0;
+                }
+            }
+            if (this.up) {
+                this.py -= this.moveSpeed;
+                if (this.py <= 0) {
+                    this.py = 0;
+                }
+            } else if (this.down) {
+                this.py += this.moveSpeed;
+                if (this.py + this.compPlayer >= this.cHeight) {
+                    this.py = this.cHeight - this.compPlayer;
+                }
+            }
+        }
+        this.desenhar();
     }
 }

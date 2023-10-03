@@ -1,6 +1,7 @@
 class Bola {
-    constructor(ctx) {
+    constructor(ctx, jogador) {
         this.ctx = ctx;
+        this.jogador = jogador;
         this.px = (this.ctx.canvas.width/2);
         this.py = (this.ctx.canvas.height/2);
        
@@ -52,6 +53,17 @@ class Bola {
             }else if(this.py <= 0){
                 this.dirY = 1;
             }
+
+            if (
+                (this.px <= this.jogador.px + this.jogador.largPlayer &&
+                this.px  + this.largBola >= this.jogador.px) && 
+                (this.py + this.compBola >= this.jogador.py && this.py <= this.jogador.py + this.jogador.compPlayer)
+            ){
+                this.dirX = 1;
+            }
+            
+                
+            
     }
         this.desenhar();
     }

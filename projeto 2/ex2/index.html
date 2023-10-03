@@ -18,12 +18,12 @@
         const canvas = document.getElementById('desenho1');
         const ctx = canvas.getContext('2d');
 
-        const jogador1 = new Jogador(ctx, canvas)
-        const bola = new Bola(ctx);
-
+        const jogador = new Jogador(ctx, canvas)
+        const bola = new Bola(ctx, jogador);
+        
         const game= ()=>{
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            jogador1.animacao();
+            jogador.animacao();
             bola.animacao();
             requestAnimationFrame(game)
         }
