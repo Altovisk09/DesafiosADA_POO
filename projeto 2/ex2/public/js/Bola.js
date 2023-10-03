@@ -13,11 +13,16 @@ class Bola {
         this.dirX = 0;
         this.dirY = 0;
 
-        const btn = document.getElementById('iniciar')
-        btn.addEventListener('click', (event)=>{
-            this.movimento = true;
+        const btnI = document.getElementById('iniciar');
+        const btnP = document.getElementById('pausar');
+        btnI.addEventListener('click', (event)=>{
             this.iniciar();
+        });
+        btnP.addEventListener('click', (event)=>{
+            this.pausar();
         })
+
+
     }
 
     iniciar() {
@@ -25,6 +30,13 @@ class Bola {
         this.dirX = -1;
         this.dirY = (Math.random()*10 > 5 ? 1 : -1);
     }
+
+    pausar() {
+        this.movimento = false;
+        this.dirX = this.px;
+        this.dirY = this.py;
+    }
+
     animacao() {
         if(this.movimento){
             this.px += (this.dirX * this.moveSpeed);

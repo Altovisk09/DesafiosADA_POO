@@ -17,10 +17,25 @@ class Jogador {
 
         this.movimento = false;
 
-        const btn = document.getElementById('iniciar')
-        btn.addEventListener('click', (event)=>{
-            this.movimento = true;
+        const btnI = document.getElementById('iniciar');
+        const btnP = document.getElementById('pausar');
+        btnI.addEventListener('click', (event)=>{
+            this.iniciar();
         })
+
+        btnP.addEventListener('click', (event)=>{
+            this.pausar();
+        })
+    }
+
+    iniciar() {
+        this.movimento = true;
+    }
+
+    pausar() {
+        this.movimento = false;
+        this.px = this.px;
+        this.py = this.px;
     }
 
     animacao() {
