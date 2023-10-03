@@ -7,14 +7,21 @@
     <link rel="stylesheet" href="./public/css/style.css">
 </head>
 <body>
-    <canvas id="desenho1" height="500px" width = "500px     ">
+    <canvas id="desenho1" height="400px" width = "800px     ">
         Seu navagador não é compatível com canvas.
     </canvas>
+    <button type="button" id="iniciar">Iniciar</button>
     <script src="./public/js/Jogador.js"></script>
+    <script src="./public/js/Bola.js"></script>
     <script>
         const canvas = document.getElementById('desenho1');
         const ctx = canvas.getContext('2d');
-        const jogador1 = new Jogador(ctx, canvas);
+
+        
+        const game = ()=> {
+            const jogador1 = new Jogador(ctx, canvas)
+            const bola = new Bola(ctx);
+        }
     </script>
 </body>
 </html>

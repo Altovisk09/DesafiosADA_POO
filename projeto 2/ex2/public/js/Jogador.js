@@ -7,7 +7,7 @@ class Jogador {
         this.px = 0;
         this.py = 0;
         this.largPlayer = 15;
-        this.compPlayer = 100;
+        this.compPlayer = 120;
         this.moveSpeed = 3.5;
 
         this.right = false;
@@ -75,11 +75,9 @@ class Jogador {
             }
         }
         this.desenhar();
-        requestAnimationFrame(this.animacao.bind(this));
     }
 
     desenhar() {
-    this.ctx.clearRect(0, 0, this.cWidth, this.cHeigth);
     this.ctx.fillStyle = '#FF0000';
     this.ctx.fillRect(this.px, this.py, this.largPlayer, this.compPlayer);
     }
